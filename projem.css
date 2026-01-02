@@ -1,0 +1,210 @@
+/* Temel Stiller */
+:root {
+    --red-primary: #dc2626;
+    --red-hover: #b91c1c;
+    --gray-dark: #1f2937;
+    --black-bg: #000000;
+    --text-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var/(--black-bg);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* View Yönetimi */
+.view {
+    display: none;
+    min-height: screen;
+    width: 100%;
+}
+
+.view.active {
+    display: block;
+}
+
+.bg-overlay {
+    position: fixed;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Kartlar ve Konteynerler */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--red-primary);
+    border-radius: 24px;
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.2);
+}
+
+.login-card {
+    border-color: var(--gray-dark);
+}
+
+/* Butonlar */
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+}
+
+.btn-red { background: linear-gradient(to right, #dc2626, #991b1b); border: 1px solid #ef4444; }
+.btn-red:hover { transform: scale(1.05); background: #b91c1c; }
+
+.btn-gray { background: linear-gradient(to right, #374151, #111827); border: 1px solid #4b5563; }
+.btn-gray:hover { background: #1f2937; }
+
+.btn-green { background: #16a34a; }
+.btn-green:hover { background: #15803d; }
+
+.btn-sm { padding: 8px 16px; font-size: 0.875rem; }
+.w-full { width: 100%; }
+
+/* Header */
+.main-header {
+    background: rgba(0,0,0,0.95);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.border-red { border-bottom: 2px solid var(--red-primary); }
+.border-gray { border-bottom: 2px solid var(--gray-dark); }
+
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--red-primary); }
+.logo.gray { color: #9ca3af; }
+
+/* Grid ve Kartlar */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.product-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--red-primary);
+}
+
+.card-img { width: 100%; h-64; height: 250px; object-contain: cover; }
+
+.card-body { padding: 20px; }
+
+.card-price { color: #ef4444; font-size: 1.5rem; font-weight: bold; }
+
+/* Formlar */
+.form-container {
+    background: rgba(0,0,0,0.9);
+    border: 2px solid #991b1b;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.hidden { display: none; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+input {
+    background: #111827;
+    border: 2px solid #374151;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+input:focus { border-color: var(--red-primary); outline: none; }
+
+/* Admin Liste */
+.admin-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.admin-item {
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid #374151;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    background: #111827;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid var(--red-primary);
+    text-align: center;
+    max-width: 400px;
+}
+
+.icon-warning { color: var(--red-primary); width: 64px; height: 64px; margin-bottom: 15px; }
+
+@media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+}
