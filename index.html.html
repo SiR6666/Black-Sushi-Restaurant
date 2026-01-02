@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sushi Black - Premium Restaurant</title>
+    <link rel="stylesheet" href="projem.css">
+    <!-- Lucide Icons için CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- ROL SEÇİMİ (HOME) -->
+    <div id="roleSelectView" class="view active">
+        <div class="bg-overlay"></div>
+        <div class="content-card">
+            <div class="header-section">
+                <h1>🍣 SUSHI BLACK 🥢</h1>
+                <p>Premium Yapon Mətbəxi</p>
+                <div class="emoji-large">⛩️</div>
+            </div>
+            <div class="button-group">
+                <button onclick="showView('userView')" class="btn btn-red">
+                    <i data-lucide="menu"></i> Menyuya Bax
+                </button>
+                <button onclick="showView('adminLoginView')" class="btn btn-gray">
+                    <i data-lucide="shield"></i> Admin Girişi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN LOGIN -->
+    <div id="adminLoginView" class="view">
+        <div class="bg-overlay"></div>
+        <div class="content-card login-card">
+            <button onclick="showView('roleSelectView')" class="back-link">← Geri</button>
+            <div class="header-section">
+                <div class="emoji-large">🔐</div>
+                <h2>Admin Paneli</h2>
+            </div>
+            <div class="input-group">
+                <label>Şifrə</label>
+                <input type="password" id="adminPassword" placeholder="••••••••">
+            </div>
+            <button onclick="handleAdminLogin()" class="btn btn-gray w-full">Daxil ol</button>
+        </div>
+    </div>
+
+    <!-- USER MENU (GUEST) -->
+    <div id="userView" class="view">
+        <header class="main-header border-red">
+            <div class="container flex-between">
+                <div class="logo">🍣 <span>SUSHI BLACK</span></div>
+                <button onclick="logout()" class="btn btn-red btn-sm">
+                    <i data-lucide="log-out"></i> Ana Səhifə
+                </button>
+            </div>
+        </header>
+        <main class="container py-20">
+            <h2 class="page-title text-red">🍱 BİZİM MENYU</h2>
+            <div id="userProductGrid" class="product-grid">
+                <!-- Ürünler buraya gelecek -->
+            </div>
+            <div id="userEmptyState" class="empty-state">
+                <div class="emoji-large">🥢</div>
+                <p>Menyu hal-hazırda yenilənir.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminView" class="view">
+        <header class="main-header border-gray">
+            <div class="container flex-between">
+                <div class="logo gray">🛡️ <span>Admin Paneli</span></div>
+                <button onclick="logout()" class="btn btn-gray btn-sm">
+                    <i data-lucide="log-out"></i> Çıxış
+                </button>
+            </div>
+        </header>
+        <main class="container py-20">
+            <div class="admin-controls">
+                <button onclick="toggleAddForm()" id="toggleFormBtn" class="btn btn-red">
+                    <i data-lucide="plus"></i> Yeni Məhsul Əlavə Et
+                </button>
+                
+                <div id="addForm" class="form-container hidden">
+                    <h3>Yeni Məhsul Məlumatları</h3>
+                    <div class="form-grid">
+                        <input type="text" id="newName" placeholder="Məhsul adı">
+                        <input type="number" id="newPrice" placeholder="Qiymət (₼)" step="0.01">
+                        <div class="file-input-group">
+                            <input type="text" id="newImageUrl" placeholder="Şəkil URL">
+                            <input type="file" id="newImageFile" accept="image/*" onchange="handleFileSelect(event, 'new')">
+                        </div>
+                    </div>
+                    <button onclick="addProduct()" class="btn btn-green w-full mt-20">Yadda saxla və Əlavə et</button>
+                </div>
+            </div>
+
+            <div class="list-section">
+                <h3>📋 Məhsul Siyahısı (<span id="productCount">0</span>)</h3>
+                <div id="adminProductList" class="admin-list">
+                    <!-- Admin ürün listesi buraya gelecek -->
+                </div>
+            </div>
+        </main>
+
+        <!-- DELETE MODAL -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <i data-lucide="alert-triangle" class="icon-warning"></i>
+                <h3>Məhsulu silmək istəyirsiniz?</h3>
+                <p>Bu əməliyyat geri qaytarıla bilməz.</p>
+                <div class="modal-buttons">
+                    <button onclick="closeDeleteModal()" class="btn btn-gray">Ləğv et</button>
+                    <button onclick="confirmDelete()" class="btn btn-red">Bəli, Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="projem.js"></script>
+</body>
+</html>
